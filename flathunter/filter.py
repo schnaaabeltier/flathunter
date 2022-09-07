@@ -135,7 +135,7 @@ class RealtorNameFilter:
             return True
 
         names_to_search = "(" + ")|(".join(self.realtor_names) + ")"
-        return re.search(names_to_search, expose['realtor_name'], re.IGNORECASE)
+        return re.search(names_to_search, expose['realtor_name'].lower(), re.IGNORECASE)
 
 class PPSFilter:
     """Exclude exposes above a given price per square"""
