@@ -26,17 +26,23 @@ urls:
 
 # Define filters to exclude flats that don't meet your critera.
 # Supported filters include 'max_rooms', 'min_rooms', 'max_size', 'min_size',
-#   'max_price', 'min_price', and 'excluded_titles'.
+#   'max_price', 'min_price', 'excluded_titles' and 'realtor_names'.
 #
 # 'excluded_titles' takes a list of regex patterns that match against
 # the title of the flat. Any matching titles will be excluded.
 # More to Python regex here: https://docs.python.org/3/library/re.html
+#
+# 'realtor_names' takes a list of regex patters that match against the name
+# of the realtor of the flat. Flats from realtors with non-matching
+# names will be excluded.
 #
 # Example:
 # filters:
 #   excluded_titles:
 #     - "wg"
 #     - "zwischenmiete"
+#   realtor_names:
+#     - "realtor1"
 #   min_price: 700
 #   max_price: 1000
 #   min_size: 50

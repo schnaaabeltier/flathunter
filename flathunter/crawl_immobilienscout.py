@@ -126,7 +126,8 @@ class CrawlImmobilienscout(Crawler):
             'price': str(entry.get("price", {}).get("value", '')),
             'total_price': str(entry.get('calculatedTotalRent', {}).get("totalRent", {}).get('value', '')),
             'size': str(entry.get("livingSpace", '')),
-            'rooms': str(entry.get("numberOfRooms", ''))
+            'rooms': str(entry.get("numberOfRooms", '')),
+            'realtor_name': str(entry.get("realtorCompanyName", ''))
         }
 
     def get_page(self, search_url, driver=None, page_no=None):

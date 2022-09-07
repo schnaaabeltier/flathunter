@@ -124,6 +124,19 @@ class TitleFilter:
             return True
         return False
 
+class RealtorNameFilter:
+    """Exclude exposes whose realtor name does not match the provided terms"""
+
+    def __init__(self, realtor_names):
+        self.realtor_names = realtor_names
+
+    def is_interesting(self, expose):
+        if (expose["crawler"] != "CrawlImmobilienscout"):
+            return True
+
+        names_to_search = "(" + ")|(".join(self.realtor_names) + ")"
+        return re.search(names_to_search, expose['realtor_name'], re.IGNORECASE)
+
 class PPSFilter:
     """Exclude exposes above a given price per square"""
 
@@ -177,6 +190,8 @@ class FilterBuilder:
                 self.filters.append(MaxRoomsFilter(filters_config["max_rooms"]))
             if "max_price_per_square" in filters_config:
                 self.filters.append(PPSFilter(filters_config["max_price_per_square"]))
+            if "realtor_names" in filters_config:
+                self.filters.append(RealtorNameFilter(filters_config["realtor_names"]))
         return self
 
     def max_size_filter(self, size):
