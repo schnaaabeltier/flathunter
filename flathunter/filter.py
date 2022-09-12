@@ -13,7 +13,7 @@ class ExposeHelper:
         price_match = re.search(r'\d+([\.,]\d+)?', expose['price'])
         if price_match is None:
             return None
-        return float(price_match[0].replace(".", "").replace(",", "."))
+        return float(price_match[0].replace(",", "."))
 
     @staticmethod
     def get_size(expose):
